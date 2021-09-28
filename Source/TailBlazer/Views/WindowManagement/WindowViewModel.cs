@@ -158,6 +158,16 @@ namespace TailBlazer.Views.WindowManagement
                 OpenFile(new FileInfo(file));
         }
 
+        public bool IsFileOpened(FileInfo file)
+        {
+            foreach(var view in Views)
+            {
+                if ((view.Header as FileHeader).FullName == file.FullName)
+                    return true;
+            }
+            return false;
+        }
+
         private void OpenFile(FileInfo file)
         {
             _schedulerProvider.Background.Schedule(() =>
@@ -167,6 +177,12 @@ namespace TailBlazer.Views.WindowManagement
                     _logger.Info($"Attempting to open '{file.FullName}'");
 
                     RecentFiles.Add(file);
+
+                    if(IsFileOpened(file))
+                    {
+                        _logger.Info($"'{file.FullName}' already opened");
+                        return;
+                    }
 
                     //1. resolve TailViewModel
                     var factory = _objectProvider.Get<TailViewModelFactory>();
