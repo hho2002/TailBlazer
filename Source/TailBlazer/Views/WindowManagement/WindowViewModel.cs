@@ -162,8 +162,10 @@ namespace TailBlazer.Views.WindowManagement
         {
             foreach(var view in Views)
             {
-                if ((view.Header as FileHeader).FullName == file.FullName)
+                if ((view.Header as FileHeader).FullName == file.FullName) {
+                    Selected = view;
                     return true;
+                }
             }
             return false;
         }
