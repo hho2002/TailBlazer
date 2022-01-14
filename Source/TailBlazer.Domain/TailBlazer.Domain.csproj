@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaseInsensitiveString.cs" />
+    <Compile Include="FileHandling\EncodingDetector.cs" />
     <Compile Include="FileHandling\EmptyLineProvider.cs" />
     <Compile Include="FileHandling\ExludedLinesProvider.cs" />
     <Compile Include="FileHandling\ExludeLinesEx.cs" />
